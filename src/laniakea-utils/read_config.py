@@ -33,15 +33,12 @@ class ReadConfigurationFile:
     def get_log_file(self):
         return self.config['commons']['log_to']
 
+    def get_log_level(self):
+        return self.config['commons']['log_level']
+
     # Section api
     def get_trusted_OP_list(self):
         return self.config['api']['trusted_OP_list']
 
     def get_trusted_sub(self):
         return self.config['api']['trusted_sub']
-
-prova = ReadConfigurationFile()
-
-print(prova.get_log_file())
-print(prova.get_trusted_OP_list())
-print(prova.get_trusted_sub())
