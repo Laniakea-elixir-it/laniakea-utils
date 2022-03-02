@@ -34,7 +34,10 @@ class ReadConfigurationFile:
         return self.config['commons']['log_to']
 
     def get_log_level(self):
-        return self.config['commons']['log_level']
+        if self.config.has_option('commons','log_level'):
+            return self.config['commons']['log_level']
+        else:
+            return "INFO"
 
     # Section api
     def get_trusted_OP_list(self):
