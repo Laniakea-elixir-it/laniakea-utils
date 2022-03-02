@@ -4,22 +4,24 @@ from flaat import Flaat
 from flaat import tokentools
 import json
 
+
+import sys
+from laniakea_utils.common.read_config import ReadConfigurationFile
+from laniakea_utils.common.log_facility import LogFacility
+
 flaat = Flaat()
 flaat.set_web_framework('flask')
 
 app = Flask(__name__)
 
-# config files
-flaat.set_trusted_OP_list([
-'https://iam.recas.ba.infn.it/',
-'https://cloud-90-147-75-207.cloud.ba.infn.it/'
-])
+configuration = ReadConfigurationFile()
+flaat.set_trusted_OP_list(configuration.get_trusted_OP_list())
 
-
+# this will be unauth.
 @app.route("/")
-@flaat.login_required()
+#@flaat.login_required()
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>Laniakea Utils API</p>"
 
 @app.route('/info')
 def info():
