@@ -2,13 +2,12 @@
 laniakea-utils
 Utilities for Laniakea applications
 '''
-
-from setuptools
+import setuptools
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-setup(
+setuptools.setup(
   name='laniakea-utils',
   version="0.0.1",
   author="Marco Antonio Tangaro",
@@ -27,4 +26,5 @@ setup(
   package_dir={"": "src"},
   packages=setuptools.find_packages(where="src"),
   python_requires=">=3.6",
+  data_files=[('etc/laniakea',['config/laniakea-utils.ini'])],
 )
