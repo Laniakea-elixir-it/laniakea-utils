@@ -2,7 +2,7 @@
 trusted_OP_list = [ 'https://iam.recas.ba.infn.it/', 'https://cloud-90-147-75-207.cloud.ba.infn.it/' ]
 trusted_sub = <oidc_user_sub>
 
-[api]
+[commons]
 log_to = /tmp/laniakea-utils-api.log
 
 [galaxy]
