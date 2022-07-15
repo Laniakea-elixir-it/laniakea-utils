@@ -7,8 +7,9 @@ import time
 from flask import Flask, abort, jsonify, request, Blueprint
 
 from laniakea_utils.common.read_config import ReadConfigurationFile
-from laniakea_utils.common.log_facility import LogFacility
+configuration = ReadConfigurationFile()
 
+from laniakea_utils.common.log_facility import LogFacility
 log_facility = LogFacility()
 logger = log_facility.get_logger()
 
@@ -29,13 +30,11 @@ def galaxy_startup():
 
     endpoint = request.json['endpoint']
 
-    galaxy_startup(endpoint)
-
     try:
       response = requests.get(endpoint, verify=False)
-    except ConnectionError as e:
+    except OSError as e:
       # restart nginx to prevent connection refused
-      galaxyctl_run.restart_nginx()
+      restart_nginx()
       response = requests.get(endpoint, verify=False)
 
     sc = str(response.status_code)
@@ -57,19 +56,8 @@ def exec_cmd(cmd):
   return status, stdOutValue, stdErrValue
 
 #______________________________________
-def which(name):
-
-  PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-
-  for path in PATH.split(os.path.pathsep):
-    full_path = path + os.sep + name
-    if os.path.exists(full_path):
-      return str(full_path)
-
-#______________________________________
 def galaxy_startup(endpoint):
 
-  configuration = ReadConfigurationFile()
   command = configuration.get_galaxy_restart_command()
 
   status, stdout, stderr = exec_cmd(command)
@@ -97,12 +85,12 @@ def galaxy_startup(endpoint):
 def restart_nginx():
 
   command = 'sudo systemctl restart nginx'
-
+  command = configuration.get_nginx_restart_command()
   status, stdout, stderr = exec_cmd(command)
 
-  logging.debug( 'NGINX restart status: ' + str(status) )
-  logging.debug( 'NGINX restart  stdout: ' + str(stdout) )
-  logging.debug( 'NGINX stderr: ' + str(stderr) )
+  logger.debug( 'NGINX restart status: ' + str(status) )
+  logger.debug( 'NGINX restart  stdout: ' + str(stdout) )
+  logger.debug( 'NGINX stderr: ' + str(stderr) )
 
 
 #______________________________________
