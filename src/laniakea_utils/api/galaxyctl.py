@@ -84,7 +84,6 @@ def galaxy_startup(endpoint):
 #______________________________________
 def restart_nginx():
 
-  command = 'sudo systemctl restart nginx'
   command = configuration.get_nginx_restart_command()
   status, stdout, stderr = exec_cmd(command)
 
