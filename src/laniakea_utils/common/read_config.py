@@ -29,7 +29,7 @@ class ReadConfigurationFile:
         self.config = configparser.ConfigParser()
         self.config.read(config_file)
 
-    # Section commons
+    # Section [commons]
     def get_log_file(self):
         return self.config['commons']['log_to']
 
@@ -39,9 +39,16 @@ class ReadConfigurationFile:
         else:
             return "INFO"
 
-    # Section api
+    # Section [oidc]
     def get_trusted_OP_list(self):
         return self.config['oidc']['trusted_OP_list']
 
     def get_trusted_sub(self):
         return self.config['oidc']['trusted_sub']
+
+    # Section [galaxy]
+    def get_galaxy_restart_command(self):
+        return self.config['galaxy']['galaxy_restart_command']
+
+    def get_nginx_restart_command(self):
+        return self.config['galaxy']['nginx_restart_command']
