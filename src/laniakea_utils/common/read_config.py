@@ -41,7 +41,7 @@ class ReadConfigurationFile:
 
     # Section api
     def get_trusted_OP_list(self):
-        return self.config['api']['trusted_OP_list']
+        return self.config['oidc']['trusted_OP_list']
 
     def get_trusted_sub(self):
-        return self.config['api']['trusted_sub']
+        return self.config['oidc']['trusted_sub']
