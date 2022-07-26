@@ -2,6 +2,7 @@ import json, requests
 import subprocess
 import shlex
 import pwd
+import crypt
 
 from flask import Flask, abort, jsonify, request, Blueprint
 
@@ -20,13 +21,15 @@ def info():
 
 @users_bp.route('/laniakea-utils-api/v1.0/users/add-user', methods=['POST'])
 def add_user():
-  # check if user exists, if not create it.
-  user = request.json['user']
-  try:
-    pwd.getpwnam(user)
-  except KeyError:
-    return jsonify({user: 'already exist' })
-
+    # check if user exists, if not create it.
+    user = request.json['user']
+    is_available = check_user(user)
+    if is_available:
+        return jsonify({'user': user,
+                        'is_available': 'yes'
+                       })
+    else:
+        return False   
 
 
 #______________________________________
@@ -37,3 +40,13 @@ def exec_cmd(cmd):
   stdOutValue, stdErrValue = communicateRes
   status = proc.wait()
   return status, stdOutValue, stdErrValue
+
+#______________________________________
+def check_user(user):
+
+  try:
+    pwd.getpwnam(user)
+  except KeyError:
+    return True
+
+  return False
