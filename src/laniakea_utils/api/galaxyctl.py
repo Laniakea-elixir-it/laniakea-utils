@@ -67,8 +67,8 @@ def galaxy_startup(endpoint):
   logger.debug( 'Startup status: ' + str(status) )
 
   # wait for socket and stats server
-  wait_for_port(4010, '127.0.0.01', 50.0) 
-  wait_for_port(4001, '127.0.0.01', 50.0)
+  wait_for_port(4010, '127.0.0.1', 50.0) 
+  wait_for_port(4001, '127.0.0.1', 50.0)
 
   # check for galaxy 
   response = requests.get(endpoint, verify=False)
