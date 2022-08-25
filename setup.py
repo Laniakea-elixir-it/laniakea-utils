@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
   name='laniakea-utils',
-  version="0.0.1",
+  version="0.0.1.1",
   author="Marco Antonio Tangaro",
   description='Utilities for Laniakea applications',
   long_description=long_description,
