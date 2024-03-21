@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "laniakea-utils"
-version = "0.2.0_b2"
+version = "0.2.0_b3"
 authors = [
   { name="Marco Antonio Tangaro", email="ma.tangaro@ibiom.cnr.it" },
 ]
