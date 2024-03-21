@@ -41,7 +41,7 @@ class ReadConfigurationFile:
 
     # Section [oidc]
     def get_trusted_OP_list(self):
-        return self.config['oidc']['trusted_OP_list']
+        return (self.config['oidc']['trusted_OP_list']).split(",")
 
     def get_trusted_sub(self):
         return self.config['oidc']['trusted_sub']
@@ -49,6 +49,9 @@ class ReadConfigurationFile:
     # Section [galaxy]
     def get_galaxy_restart_command(self):
         return self.config['galaxy']['galaxy_restart_command']
+
+    def get_gunicorn_bind_address(self):
+        return self.config['galaxy']['gunicorn_bind_address']
 
     def get_nginx_restart_command(self):
         return self.config['galaxy']['nginx_restart_command']
