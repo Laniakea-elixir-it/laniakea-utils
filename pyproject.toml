@@ -4,3 +4,31 @@ requires = [
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "laniakea-utils"
+version = "0.2.0_b1"
+authors = [
+  { name="Marco Antonio Tangaro", email="ma.tangaro@ibiom.cnr.it" },
+]
+description = "Utilities for Laniakea applications"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: POSIX :: Linux",
+]
+dependencies = [
+    "flask == 2.0.2",
+    "flaat == 0.14.7",
+    "gunicorn == 20.1.0",
+    "hvac == 0.11.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.urls]
+Homepage = "https://github.com/Laniakea-elixir-it/laniakea-utils"
+Issues = "https://github.com/Laniakea-elixir-it/laniakea-utils/issues"
