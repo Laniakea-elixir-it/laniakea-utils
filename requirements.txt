@@ -1,4 +1,5 @@
 Flask==2.0.2
-flaat==0.14.7
+flaat==1.1.18
 gunicorn==20.1.0
 hvac==0.11.2
+Werkzeug==2.0.2

@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "laniakea-utils"
-version = "0.2.0_b1"
+version = "0.2.0_b2"
 authors = [
   { name="Marco Antonio Tangaro", email="ma.tangaro@ibiom.cnr.it" },
 ]
@@ -21,9 +21,10 @@ classifiers = [
 ]
 dependencies = [
     "flask == 2.0.2",
-    "flaat == 0.14.7",
+    "flaat == 1.1.18",
     "gunicorn == 20.1.0",
     "hvac == 0.11.2",
+    "Werkzeug == 2.0.2",
 ]
 
 [tool.setuptools.packages.find]
