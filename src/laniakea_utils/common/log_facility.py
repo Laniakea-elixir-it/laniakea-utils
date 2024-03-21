@@ -33,4 +33,4 @@ class LogFacility:
 
 log_facility = LogFacility()
 logger = log_facility.get_logger()
-logger.info('test')
+logger.info('Laniakea utils')
