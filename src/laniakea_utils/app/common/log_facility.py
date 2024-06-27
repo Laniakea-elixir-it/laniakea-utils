@@ -1,6 +1,6 @@
 import logging
 import sys
-from laniakea_utils.common.read_config import ReadConfigurationFile
+from app.common.read_config import ReadConfigurationFile
 
 class LogFacility:
 

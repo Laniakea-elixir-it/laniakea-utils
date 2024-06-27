@@ -6,10 +6,12 @@ import time
 
 from flask import Flask, abort, jsonify, request, Blueprint
 
-from laniakea_utils.common.read_config import ReadConfigurationFile
+from app import flaat
+
+from app.common.read_config import ReadConfigurationFile
 configuration = ReadConfigurationFile()
 
-from laniakea_utils.common.log_facility import LogFacility
+from app.common.log_facility import LogFacility
 log_facility = LogFacility()
 logger = log_facility.get_logger()
 
@@ -20,10 +22,13 @@ def info():
     return "<p>Laniakea Utils: galaxyctl api</p>"
 
 @galaxyctl_bp.route('/galaxyctl_api/v1.0/galaxy-startup', methods=['POST'])
+@flaat.is_authenticated()
 def galaxy_startup():
 
     # check if galaxy is online, if yes return online
     # else run galaxy-startup script
+
+    print(request.json)
 
     if not request.json or not 'endpoint' in request.json:
        abort(400)
